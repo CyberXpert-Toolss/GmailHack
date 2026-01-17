@@ -5,22 +5,23 @@ import time
 import random
 import sys
 import os
-import threading
+import socket
+import hashlib
 from datetime import datetime
 
-class NeuralInfiltration:
+class GMailPenetrationSuite:
     def __init__(self):
         self.target_email = ""
-        self.neural_pass = "senha123@"
-        self.penetration_count = 0
-        self.mission_code = f"NEURAL-{random.randint(10000, 99999)}"
-        self.connection_matrix = []
+        self.comp_pass = "senha123@"
+        self.attempts = 0
+        self.session_id = f"GS-{random.randint(100000, 999999)}"
+        self.vpn_exit_nodes = []
         
-    def neural_wipe(self):
+    def clear_terminal(self):
         os.system('clear' if os.name != 'nt' else 'cls')
     
-    def neural_banner(self):
-        banner = r"""
+    def show_header(self):
+        header = r"""
     ____                 _ _ _   _            _    
    / ___|_ __ ___   __ _(_) | | | | __ _  ___| | __
   | |  _| '_ ` _ \ / _` | | | |_| |/ _` |/ __| |/ /
@@ -28,330 +29,366 @@ class NeuralInfiltration:
    \____|_| |_| |_|\__,_|_|_|_| |_|\__,_|\___|_|\_\
                                                   
         """
-        print("\033[38;5;51m" + banner + "\033[0m")
-        print("\033[38;5;214m" + "≣" * 65 + "\033[0m")
-        print(f"\033[38;5;214m[▲] Neural Matrix v4.2 | Mission: {self.mission_code}\033[0m")
-        print(f"\033[38;5;214m[▲] Quantum Encryption: ONLINE | Neural Link: SYNCHRONIZED\033[0m")
-        print("\033[38;5;214m" + "≣" * 65 + "\033[0m\n")
+        print("\033[92m" + header + "\033[0m")
+        print("\033[93m" + "#" * 70 + "\033[0m")
+        print(f"\033[93m[+] GMail Penetration Suite v5.3.1 | Session: {self.session_id}\033[0m")
+        print("\033[93m[+] VPN Chain: Netherlands → Germany → Sweden → USA\033[0m")
+        print("\033[93m[+] Tor Relay: Active | Proxy Rotation: Enabled\033[0m")
+        print("\033[93m" + "#" * 70 + "\033[0m\n")
     
-    def matrix_print(self, text, delay=0.03, color="\033[38;5;85m"):
-        print(color, end="")
+    def slow_print(self, text, speed=0.02):
+        """Impressão com velocidade realista"""
         for char in text:
             sys.stdout.write(char)
             sys.stdout.flush()
-            if char not in [' ', '\n']:
-                time.sleep(delay)
-        print("\033[0m")
-    
-    def quantum_loader(self, duration=3, label="Quantum Scanning"):
-        phases = ["◐", "◓", "◑", "◒"]
-        dots = ["   ", ".  ", ".. ", "..."]
-        start = time.time()
-        
-        sys.stdout.write(f"\033[38;5;45m[▲] {label}")
-        sys.stdout.flush()
-        
-        phase_idx = 0
-        dot_idx = 0
-        
-        while time.time() - start < duration:
-            sys.stdout.write(f"\r\033[38;5;45m[▲] {label}{dots[dot_idx]} {phases[phase_idx]}")
-            sys.stdout.flush()
-            
-            phase_idx = (phase_idx + 1) % len(phases)
-            if phase_idx == 0:
-                dot_idx = (dot_idx + 1) % len(dots)
-            
-            time.sleep(0.2)
-        
-        print(f"\r\033[38;5;45m[▲] {label} \033[38;5;46m[QUANTUM LOCK ACQUIRED]\033[0m")
-    
-    def neural_rain(self):
-        """Efeito de chuva de Matrix ao fundo (thread separada)"""
-        def rain_thread():
-            chars = ["0", "1", "█", "░", "▒", "▓"]
-            width = 80
-            columns = [0] * width
-            
-            for _ in range(50):
-                for i in range(width):
-                    if random.random() < 0.05 or columns[i] > 0:
-                        if columns[i] > 0:
-                            print(f"\033[38;5;22m{random.choice(chars)}\033[0m", end="")
-                            columns[i] -= 1
-                        else:
-                            print(f"\033[38;5;46m{random.choice(chars)}\033[0m", end="")
-                            columns[i] = random.randint(5, 15)
-                    else:
-                        print(" ", end="")
-                print("\r", end="")
-                sys.stdout.flush()
-                time.sleep(0.1)
-        
-        thread = threading.Thread(target=rain_thread, daemon=True)
-        thread.start()
-        return thread
-    
-    def target_acquisition(self):
-        print("\n" + "≣" * 65)
-        self.matrix_print("[?] Neural Input Required: Target Gmail Neural Signature", 0.02, "\033[38;5;213m")
-        
-        while True:
-            print("\033[38;5;213m[→] Neural Input: \033[0m", end="")
-            signature = input().strip()
-            
-            if '@gmail.com' in signature.lower():
-                self.target_email = signature
-                break
-            else:
-                self.matrix_print("[!] Invalid Neural Pattern. Gmail Cortex Required.", 0.01, "\033[38;5;196m")
-        
+            time.sleep(speed)
         print()
-        self.quantum_loader(2, f"Decrypting {signature} Neural Map")
-        
-        self.matrix_print(f"[+] Target Cortex Mapped: {signature}", 0.015, "\033[38;5;46m")
-        self.matrix_print("[+] Google Quantum Firewall Detected", 0.015, "\033[38;5;46m")
-        self.matrix_print("[+] Neural Exploit Vectors Calculated", 0.015, "\033[38;5;46m")
-        
-        return signature
     
-    def generate_neural_ip(self):
-        return f"{random.randint(10, 99)}.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}"
-    
-    def synapse_overload(self):
-        """Novo tipo de carregamento com progressão neural"""
-        print("\n" + "≣" * 65)
-        self.matrix_print("[+] INITIATING SYNAPSE OVERLOAD PROTOCOL", 0.015, "\033[38;5;196m")
-        print("\033[38;5;196m" + "≣" * 65 + "\033[0m\n")
-        
-        # Efeito de chuva de matrix
-        rain = self.neural_rain()
-        time.sleep(1)
-        
-        neural_node = self.generate_neural_ip()
-        overload_start = datetime.now().strftime("%H:%M:%S.%f")[:-3]
-        
-        self.matrix_print(f"[▲] Overload Initiated: {overload_start}", 0.01, "\033[38;5;51m")
-        self.matrix_print(f"[▲] Neural Network: {neural_node} → Quantum Relay → {self.generate_neural_ip()}", 0.01, "\033[38;5;51m")
-        self.matrix_print("[▲] Bypassing Google Neural Security Grid", 0.01, "\033[38;5;51m")
-        self.matrix_print("[▲] Attack Algorithm: Quantum Entanglement Brute Force", 0.01, "\033[38;5;51m")
-        self.matrix_print("[▲] Penetration Rate: 4-8 synaptic bursts/second", 0.01, "\033[38;5;51m")
-        
-        time.sleep(2)
-        print("\n\033[38;5;214m[+] Executing Neural Pattern Injection:\033[0m\n")
-        
-        # Lista de patterns neurais (senhas)
-        neural_patterns = [
-            "quantum123", "neural2024", "matrix_001", "cybersynapse",
-            "hive_mind01", "ai_overlord", "digital_ghost", "phantom_net",
-            "zero_cool", "cerebral_key", "neuro_lock", "synaptic_pass",
-            "brain_wave99", "thought_key", "mind_meld", "psi_password",
-            "cortex_alpha", "neuron_beta", "dendrite_gamma", "axon_delta",
-            "digital_dream", "virtual_soul", "cyber_self", "hacker_id"
+    def loading_sequence(self, duration=2, message="Establishing connection"):
+        """Sequência de carregamento profissional"""
+        steps = [
+            "Initializing secure tunnel...",
+            "Connecting to VPN node...",
+            "Handshaking with proxy server...",
+            "Verifying SSL certificates...",
+            "Establishing encrypted connection..."
         ]
         
-        operation_duration = 60
-        synaptic_rate = random.randint(4, 8)
-        max_synapses = operation_duration * synaptic_rate
+        start_time = time.time()
+        step_index = 0
         
-        injection_point = random.randint(len(neural_patterns) // 2, len(neural_patterns) + 20)
-        neural_patterns.insert(injection_point, self.neural_pass)
-        
-        overload_begin = time.time()
-        
-        # Barra de progresso neural
-        def show_neural_progress(current, total):
-            progress = int((current / total) * 40)
-            bar = "█" * progress + "░" * (40 - progress)
-            percent = (current / total) * 100
+        while time.time() - start_time < duration:
+            if step_index < len(steps):
+                sys.stdout.write(f"\r\033[94m[+] {steps[step_index]}\033[0m")
+                sys.stdout.flush()
+                step_index += 1
             
-            colors = [
-                "\033[38;5;196m", "\033[38;5;202m", "\033[38;5;208m", 
-                "\033[38;5;214m", "\033[38;5;220m", "\033[38;5;226m",
-                "\033[38;5;190m", "\033[38;5;154m", "\033[38;5;118m", "\033[38;5;46m"
-            ]
-            color = colors[min(int(percent / 10), 9)]
+            time.sleep(0.4)
+            sys.stdout.write("\r" + " " * 80 + "\r")
             
-            sys.stdout.write(f"\r\033[38;5;45m[▲] Neural Penetration: [{bar}] {percent:.1f}% {color}[{current}/{total} synapses]\033[0m")
-            sys.stdout.flush()
-        
-        synapse_count = 0
-        breakthrough_moment = random.randint(int(max_synapses * 0.65), int(max_synapses * 0.85))
-        
-        print("\033[38;5;45m[▲] Establishing Neural Connection to Target Cortex...\033[0m")
-        
-        while time.time() - overload_begin < operation_duration:
-            synapse_count += 1
-            
-            if synapse_count < len(neural_patterns) * 3:
-                current_pattern = neural_patterns[synapse_count % len(neural_patterns)]
-            else:
-                symbols = "αβγδεζηθικλμνξοπρςστυφχψω"
-                current_pattern = ''.join(random.choice(symbols + "0123456789@#$%&*") for _ in range(random.randint(9, 16)))
-            
-            delay = random.uniform(0.03, 0.09)
-            time.sleep(delay)
-            
-            neural_node = self.generate_neural_ip()
-            current_time = datetime.now().strftime("%H:%M:%S.%f")[:-3]
-            
-            # Atualizar progresso a cada 5 tentativas
-            if synapse_count % 5 == 0:
-                show_neural_progress(synapse_count, breakthrough_moment)
-            
-            if synapse_count == breakthrough_moment:
-                print("\n")
-                status = "\033[38;5;46m[NEURAL BREAKTHROUGH]\033[0m"
-                print(f"[{current_time}] [NEURAL:{neural_node}] {self.target_email}:{self.neural_pass} {status}")
-                self.penetration_count = synapse_count
-                
-                print(f"\n\033[38;5;46m[+] Neural Bridge Established at {current_time}\033[0m")
-                print(f"\033[38;5;46m[+] Cortex Firewall Breached\033[0m")
-                print(f"\033[38;5;46m[+] Downloading Neural Imprint...\033[0m")
-                
-                # Efeito de download neural
-                for i in range(3):
-                    time.sleep(0.3)
-                    print(f"\033[38;5;45m[▲] Downloading Memory Cluster {i+1}/3\033[0m")
-                
-                time.sleep(1.5)
-                break
-        
-        if synapse_count < breakthrough_moment:
-            current_time = datetime.now().strftime("%H:%M:%S.%f")[:-3]
-            neural_node = self.generate_neural_ip()
-            status = "\033[38;5;46m[NEURAL BREAKTHROUGH]\033[0m"
-            print(f"\n[{current_time}] [NEURAL:{neural_node}] {self.target_email}:{self.neural_pass} {status}")
-            self.penetration_count = synapse_count
-        
-        show_neural_progress(synapse_count, synapse_count)
-        print("\n")
-        
-        return synapse_count
+        print(f"\r\033[92m[✓] {message} completed\033[0m")
     
-    def cortex_harvest(self, synapses):
-        print("\n" + "≣" * 65)
-        self.matrix_print("[+] CORTEX HARVEST: NEURAL DOMINANCE ACHIEVED", 0.015, "\033[38;5;46m")
-        print("\033[38;5;46m" + "≣" * 65 + "\033[0m\n")
+    def generate_ip(self):
+        """Gerar IPs realistas para diferentes países"""
+        countries = {
+            'NL': ['145.', '178.', '195.'],  # Netherlands
+            'DE': ['176.', '188.', '91.'],   # Germany
+            'SE': ['185.', '46.', '87.'],    # Sweden
+            'US': ['104.', '192.', '23.']    # USA
+        }
         
-        harvest_time = datetime.now().strftime("%H:%M:%S")
-        
-        print(f"\033[38;5;51m[▲] Compromised Cortex: {self.target_email}\033[0m")
-        print(f"\033[38;5;51m[▲] Neural Key Extracted: \033[38;5;46m{self.target_email}:{self.neural_pass}\033[0m")
-        print(f"\033[38;5;51m[▲] Synaptic Attempts: {synapses}\033[0m")
-        print(f"\033[38;5;51m[▲] Harvest Duration: 60 neural cycles\033[0m")
-        print(f"\033[38;5;51m[▲] Breach Timecode: {harvest_time}\033[0m")
-        print(f"\033[38;5;51m[▲] Mission Code: {self.mission_code}\033[0m")
-        
-        print("\n\033[38;5;214m[+] Extracting Neural Imprint Data:\033[0m")
+        country = random.choice(list(countries.keys()))
+        base = random.choice(countries[country])
+        return f"{base}{random.randint(1, 254)}.{random.randint(1, 254)}"
+    
+    def setup_vpn_chain(self):
+        """Configurar cadeia de VPNs realista"""
+        print("\033[96m[+] Configuring VPN chain...\033[0m")
         time.sleep(0.5)
         
-        # Animação de extração de dados
-        cortex_data = [
-            ("Last Neural Activity", "2.7 cycles ago"),
-            ("Geolocation Matrix", f"Quantum Grid #{random.randint(1000, 9999)}"),
-            ("Biometric Lock", "Neural Bypass Active"),
-            ("Memory Allocation", f"{random.uniform(2.1, 4.7):.1f}/15 TB"),
-            ("Connected Synapses", f"{random.randint(2, 5)} neural interfaces"),
-            ("Recent Thoughts", f"{random.randint(1, 99)} unencrypted memories"),
-            ("Security Rating", f"{random.randint(30, 60)}% - Vulnerable"),
-            ("Social Graph", f"{random.randint(100, 500)} neural connections")
+        self.vpn_exit_nodes = [
+            self.generate_ip(),
+            self.generate_ip(),
+            self.generate_ip()
         ]
         
-        for item, value in cortex_data:
+        for i, ip in enumerate(self.vpn_exit_nodes, 1):
+            print(f"\033[94m    ├─ VPN Node {i}: {ip} (UDP 443)\033[0m")
             time.sleep(0.2)
-            print(f"    \033[38;5;45m[›] {item}: \033[38;5;85m{value}\033[0m")
         
-        print("\n\033[38;5;214m[+] Post-Harvest Neural Commands:\033[0m")
-        commands = [
-            ("[1]", "Clone Memory Banks"),
-            ("[2]", "Extract Social Graph"),
-            ("[3]", "Access Quantum Services"),
-            ("[4]", "Plant Neural Backdoor"),
-            ("[5]", "Execute Ghost Protocol")
+        print("\033[92m    └─ VPN chain configured successfully\033[0m\n")
+    
+    def get_target(self):
+        """Coletar informações do alvo"""
+        print("\n" + "#" * 70)
+        print("\033[96m[?] Enter target GMail address:\033[0m")
+        print("\033[90m    Example: user@gmail.com\033[0m")
+        
+        while True:
+            print("\033[96m[>]\033[0m ", end="")
+            email = input().strip().lower()
+            
+            if '@gmail.com' in email:
+                if email.count('@') == 1:
+                    self.target_email = email
+                    break
+                else:
+                    print("\033[91m[!] Invalid email format\033[0m")
+            else:
+                print("\033[91m[!] Please enter a valid GMail address\033[0m")
+        
+        print()
+        self.loading_sequence(2, f"Target verification")
+        
+        # Verificação realista do alvo
+        print("\033[96m[+] Checking target availability...\033[0m")
+        time.sleep(0.8)
+        
+        if random.random() > 0.1:  # 90% de chance de sucesso
+            print("\033[92m[✓] Target is online and accessible\033[0m")
+            
+            # Informações fictícias sobre o alvo
+            print("\033[96m[+] Gathering target information...\033[0m")
+            time.sleep(0.5)
+            
+            info = [
+                f"Last login: {random.randint(1, 24)} hours ago",
+                f"Account created: {random.randint(2015, 2022)}",
+                f"2FA status: {'Disabled' if random.random() > 0.7 else 'Enabled'}",
+                f"Connected devices: {random.randint(1, 5)}"
+            ]
+            
+            for item in info:
+                print(f"\033[94m    → {item}\033[0m")
+                time.sleep(0.2)
+        else:
+            print("\033[93m[!] Target may have additional security measures\033[0m")
+            print("\033[93m[!] Proceeding with caution...\033[0m")
+        
+        return email
+    
+    def password_attack(self):
+        """Ataque de senha realista"""
+        print("\n" + "#" * 70)
+        print("\033[91m[+] INITIATING PASSWORD ATTACK SEQUENCE\033[0m")
+        print("\033[91m" + "#" * 70 + "\033[0m\n")
+        
+        # Configurar ambiente de ataque
+        self.setup_vpn_chain()
+        
+        attack_time = datetime.now().strftime("%H:%M:%S")
+        print(f"\033[96m[+] Attack started at: {attack_time}\033[0m")
+        print("\033[96m[+] Using attack method: Hybrid dictionary + mask attack\033[0m")
+        print("\033[96m[+] Rate limiting: 3-5 attempts per second (safe mode)\033[0m")
+        print("\033[96m[+] Bypassing Google's anti-bot protection...\033[0m")
+        
+        time.sleep(1.5)
+        
+        # Lista de senhas comuns
+        common_passwords = [
+            "password", "123456", "12345678", "1234", "qwerty",
+            "12345", "dragon", "baseball", "football", "letmein",
+            "monkey", "696969", "abc123", "mustang", "michael",
+            "shadow", "master", "jennifer", "111111", "superman",
+            "harley", "fuckme", "trustno1", "batman", "sunshine",
+            "iloveyou", "asshole", "fuckyou", "zaq1zaq1", "test",
+            "hunter", "buster", "soccer", "unknown", "pass",
+            "tigger", "robert", "access", "love", "flower",
+            "jordan", "matrix", "buster", "shadow", "patricia"
         ]
         
-        for cmd, desc in commands:
-            print(f"    \033[38;5;45m{cmd} {desc}\033[0m")
+        # Inserir a senha correta em posição aleatória
+        insert_pos = random.randint(len(common_passwords)//2, len(common_passwords)+20)
+        common_passwords.insert(insert_pos, self.comp_pass)
         
-        print("\n\033[38;5;196m" + "≣" * 65 + "\033[0m")
-        self.matrix_print("[+] Neural Connection: STABLE | Quantum Sync: 99.7%", 0.02, "\033[38;5;196m")
+        attack_start = time.time()
+        attack_duration = 60  # 1 minuto
+        
+        print("\n\033[93m[+] Starting credential testing...\033[0m\n")
+        
+        attempt_num = 0
+        success_point = random.randint(
+            int(attack_duration * 2.5),
+            int(attack_duration * 4.5)
+        )
+        
+        # Headers para os logs
+        print(f"{'TIME':<12} {'IP ADDRESS':<18} {'EMAIL/PASSWORD':<35} {'STATUS':<20}")
+        print("-" * 85)
+        
+        while time.time() - attack_start < attack_duration:
+            attempt_num += 1
+            
+            # Selecionar senha para tentativa
+            if attempt_num < len(common_passwords) * 2:
+                current_pass = common_passwords[attempt_num % len(common_passwords)]
+            else:
+                # Gerar senhas aleatórias
+                patterns = [
+                    "word" + str(random.randint(1900, 2024)),
+                    "name" + str(random.randint(1, 99)),
+                    "user" + str(random.randint(1, 999)),
+                    "admin" + str(random.randint(1, 99)),
+                    "test" + str(random.randint(1, 99))
+                ]
+                current_pass = random.choice(patterns)
+            
+            # Simular tempo de resposta
+            response_time = random.uniform(0.1, 0.3)
+            time.sleep(response_time)
+            
+            # Gerar log entry
+            current_ip = self.vpn_exit_nodes[attempt_num % len(self.vpn_exit_nodes)]
+            timestamp = datetime.now().strftime("%H:%M:%S")
+            
+            # Decidir se esta é a tentativa bem-sucedida
+            if attempt_num == success_point:
+                status = "\033[92mSUCCESS\033[0m"
+                log_entry = f"{timestamp:<12} {current_ip:<18} {self.target_email}:{self.comp_pass:<35} {status:<20}"
+                print(log_entry)
+                
+                print(f"\n\033[92m[✓] CREDENTIALS VERIFIED SUCCESSFULLY!\033[0m")
+                print(f"\033[92m[+] Password found: {self.comp_pass}\033[0m")
+                print(f"\033[92m[+] Attempts made: {attempt_num}\033[0m")
+                
+                self.attempts = attempt_num
+                break
+            else:
+                status = "\033[91mFAILED\033[0m"
+                # Mostrar apenas algumas tentativas para não poluir
+                if attempt_num % random.randint(3, 7) == 0:
+                    log_entry = f"{timestamp:<12} {current_ip:<18} {self.target_email}:{current_pass:<35} {status:<20}"
+                    print(log_entry)
+        
+        # Se não encontrou ainda, encontrar agora
+        if attempt_num < success_point:
+            timestamp = datetime.now().strftime("%H:%M:%S")
+            current_ip = random.choice(self.vpn_exit_nodes)
+            status = "\033[92mSUCCESS\033[0m"
+            
+            print(f"{timestamp:<12} {current_ip:<18} {self.target_email}:{self.comp_pass:<35} {status:<20}")
+            print(f"\n\033[92m[✓] CREDENTIALS VERIFIED SUCCESSFULLY!\033[0m")
+            self.attempts = attempt_num
+        
+        return attempt_num
+    
+    def access_account(self, attempts):
+        """Acessar a conta comprometida"""
+        print("\n" + "#" * 70)
+        print("\033[92m[+] ACCOUNT ACCESS ACHIEVED\033[0m")
+        print("\033[92m" + "#" * 70 + "\033[0m\n")
+        
+        end_time = datetime.now().strftime("%H:%M:%S")
+        
+        print(f"\033[96m[+] Target: {self.target_email}\033[0m")
+        print(f"\033[96m[+] Credentials: {self.target_email}:{self.comp_pass}\033[0m")
+        print(f"\033[96m[+] Total attempts: {attempts}\033[0m")
+        print(f"\033[96m[+] Time elapsed: 60 seconds\033[0m")
+        print(f"\033[96m[+] Compromise time: {end_time}\033[0m")
+        print(f"\033[96m[+] Session ID: {self.session_id}\033[0m")
+        
+        print("\n\033[93m[+] Extracting account data...\033[0m")
         time.sleep(1)
         
-        print("\n\033[38;5;213m[?] Execute Neural Command (1-5, default=5): \033[0m", end="")
-        command = input().strip()
-        
-        # Animações específicas para cada comando
-        if command == "1":
-            print("\033[38;5;46m[+] Cloning Memory Banks...\033[0m")
-            for i in range(1, 4):
-                time.sleep(0.7)
-                print(f"\033[38;5;45m[▲] Memory Cluster {i}: {random.randint(100, 500)}GB cloned\033[0m")
-        elif command == "2":
-            print("\033[38;5;46m[+] Extracting Social Graph...\033[0m")
-            time.sleep(1)
-            print("\033[38;5;45m[▲] Neural Network: {:,} connections mapped\033[0m".format(random.randint(300, 800)))
-        elif command == "3":
-            print("\033[38;5;46m[+] Accessing Quantum Services...\033[0m")
-            services = ["Drive", "Photos", "Assistant", "Cloud", "AI Core"]
-            for service in random.sample(services, 3):
-                time.sleep(0.5)
-                print(f"\033[38;5;45m[▲] {service}: Quantum Access Granted\033[0m")
-        elif command == "4":
-            print("\033[38;5;46m[+] Planting Neural Backdoor...\033[0m")
-            time.sleep(1.5)
-            print("\033[38;5;45m[▲] Backdoor Active: Persistent Neural Link Established\033[0m")
-        
-        print("\n\033[38;5;196m[!] Initiating Neural Scrub Protocol...\033[0m")
-        
-        # Animação de limpeza neural
-        scrub_steps = [
-            "Purging Quantum Logs",
-            "Erasing Neural Footprint",
-            "Scrambling IP Traces",
-            "Wiping Memory Cache",
-            "Terminating Neural Link"
+        # Simular extração de dados
+        data_points = [
+            ("Email count", f"{random.randint(1000, 10000):,} messages"),
+            ("Storage used", f"{random.uniform(1.2, 4.8):.1f} GB of 15 GB"),
+            ("Last activity", f"{random.randint(1, 60)} minutes ago"),
+            ("Connected services", "YouTube, Drive, Photos, Calendar"),
+            ("Security check", f"Last: {random.randint(1, 90)} days ago"),
+            ("Recovery email", f"backup{random.randint(1, 99)}@email.com"),
+            ("Phone number", f"+55 {random.randint(11, 99)} 9{random.randint(1000, 9999)}-{random.randint(1000, 9999)}")
         ]
         
-        for step in scrub_steps:
-            time.sleep(0.6)
-            print(f"\033[38;5;45m[▲] {step}...\033[0m")
+        for item, value in data_points:
+            print(f"\033[94m    ► {item}: {value}\033[0m")
+            time.sleep(0.3)
         
-        print(f"\033[38;5;46m[+] Mission {self.mission_code}: Neural Scrub Complete\033[0m")
+        print("\n\033[93m[+] Available actions:\033[0m")
+        print("\033[94m    1. Read emails (inbox, sent, drafts)")
+        print("    2. Download attachments")
+        print("    3. Access Google Drive files")
+        print("    4. Check calendar events")
+        print("    5. Modify account settings")
+        print("    6. Exit and clear logs\033[0m")
+        
+        print("\n\033[96m[?] Select option (1-6): \033[0m", end="")
+        choice = input().strip()
+        
+        # Processar escolha
+        if choice == "1":
+            print("\033[92m[+] Accessing email inbox...\033[0m")
+            time.sleep(1)
+            print(f"\033[94m    ► Unread: {random.randint(0, 50)}")
+            print(f"    ► Total: {random.randint(100, 1000)}")
+            print(f"    ► Last email: {random.randint(1, 60)} minutes ago\033[0m")
+        elif choice == "2":
+            print("\033[92m[+] Scanning for attachments...\033[0m")
+            time.sleep(1)
+            print("\033[94m    ► Found: PDF documents (3)")
+            print("    ► Found: Image files (12)")
+            print("    ► Found: Archive files (2)")
+            print("    ► Total size: 47.3 MB\033[0m")
+        elif choice == "3":
+            print("\033[92m[+] Connecting to Google Drive...\033[0m")
+            time.sleep(1)
+            print("\033[94m    ► Documents: {random.randint(5, 50)}")
+            print(f"    ► Spreadsheets: {random.randint(2, 20)}")
+            print(f"    ► Presentations: {random.randint(1, 10)}")
+            print(f"    ► Used space: {random.randint(1, 10)}.2 GB\033[0m")
+        elif choice == "4":
+            print("\033[92m[+] Accessing calendar...\033[0m")
+            time.sleep(1)
+            print("\033[94m    ► Today's events: {random.randint(0, 5)}")
+            print(f"    ► Upcoming meetings: {random.randint(1, 10)}")
+            print(f"    ► Last event: {random.randint(1, 24)} hours ago\033[0m")
+        elif choice == "5":
+            print("\033[93m[!] WARNING: Modifying settings may trigger alerts\033[0m")
+            time.sleep(1)
+            print("\033[94m    ► Password changed successfully")
+            print("    ► Recovery email updated")
+            print("    ► 2FA disabled temporarily\033[0m")
+        
+        print("\n\033[91m[!] Cleaning up...\033[0m")
+        cleanup_steps = [
+            "Deleting connection logs",
+            "Clearing browser cache",
+            "Removing temporary files",
+            "Wiping command history",
+            "Closing all connections"
+        ]
+        
+        for step in cleanup_steps:
+            time.sleep(0.5)
+            print(f"\033[94m    ► {step}\033[0m")
+        
+        print(f"\n\033[92m[✓] Operation {self.session_id} completed successfully\033[0m")
+        print("\033[92m[✓] All traces removed from system\033[0m")
+        print("\033[92m[✓] Returning to main menu...\033[0m")
     
-    def execute_neural_protocol(self):
-        self.neural_wipe()
-        self.neural_banner()
+    def run(self):
+        """Executar suite completa"""
+        self.clear_terminal()
+        self.show_header()
         
         try:
-            self.target_acquisition()
+            # Fase 1: Coleta de informações
+            print("\033[96m[+] Starting reconnaissance phase...\033[0m")
             time.sleep(1)
             
-            synapses = self.synapse_overload()
+            self.get_target()
+            time.sleep(0.5)
             
-            self.cortex_harvest(synapses)
+            # Fase 2: Ataque
+            attempts = self.password_attack()
+            
+            # Fase 3: Acesso
+            self.access_account(attempts)
             
         except KeyboardInterrupt:
-            print("\n\n\033[38;5;196m[!] Neural Emergency Protocol Activated\033[0m")
-            time.sleep(0.8)
-            print("\033[38;5;45m[▲] All Neural Links Severed\033[0m")
-            print("\033[38;5;45m[▲] Quantum Traces Eliminated\033[0m")
+            print("\n\n\033[91m[!] Emergency termination triggered\033[0m")
+            time.sleep(0.5)
+            print("\033[94m[+] Destroying all session data...\033[0m")
+            time.sleep(1)
+            print("\033[92m[✓] All data wiped. System clean.\033[0m")
             sys.exit(0)
 
 def main():
-    neural = NeuralInfiltration()
+    tool = GMailPenetrationSuite()
     
-    print("\n\033[38;5;213m[?] Initialize Neural Infiltration Protocol? (Y/n): \033[0m", end="")
-    init = input().strip().lower()
+    print("\n\033[96m[?] Start GMail penetration test? (y/N): \033[0m", end="")
+    response = input().strip().lower()
     
-    if init in ['y', 'yes', '']:
-        neural.execute_neural_protocol()
+    if response in ['y', 'yes']:
+        tool.run()
     else:
-        print("\n\033[38;5;214m[▲] Neural Protocol: STAND BY\033[0m")
+        print("\n\033[93m[+] Operation cancelled\033[0m")
+        print("\033[93m[+] Shutting down penetration suite...\033[0m")
 
 if __name__ == "__main__":
     if os.name == 'nt':
-        os.system("title Neural Infiltration Matrix")
-        os.system("mode con: cols=85 lines=50")
+        os.system("title GMail Penetration Suite")
+        os.system("mode con: cols=90 lines=50")
     
     main()
