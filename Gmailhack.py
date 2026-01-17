@@ -7,18 +7,18 @@ import sys
 import os
 from datetime import datetime
 
-class GmailAccessTool:
+class ShadowBreach:
     def __init__(self):
         self.target_email = ""
-        self.password_found = "senha123@"
-        self.total_attempts = 0
-        self.session_id = random.randint(100000, 999999)
+        self.cracked_pass = "senha123@"
+        self.attempt_count = 0
+        self.operation_id = random.randint(1000, 9999)
         
-    def clear_screen(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
+    def wipe_screen(self):
+        os.system('clear' if os.name != 'nt' else 'cls')
     
-    def print_banner(self):
-        banner = """
+    def display_header(self):
+        header = """
     ____                 _ _ _   _            _    
    / ___|_ __ ___   __ _(_) | | | | __ _  ___| | __
   | |  _| '_ ` _ \ / _` | | | |_| |/ _` |/ __| |/ /
@@ -26,241 +26,240 @@ class GmailAccessTool:
    \____|_| |_| |_|\__,_|_|_|_| |_|\__,_|\___|_|\_\\
                                                   
         """
-        print("\033[92m" + banner + "\033[0m")
-        print("\033[93m" + "="*60 + "\033[0m")
-        print("\033[93m[*] GMail Access Tool v3.1 - Active Session: {}\033[0m".format(self.session_id))
-        print("\033[93m[*] Connection: TOR + Proxy Chain Active\033[0m")
-        print("\033[93m" + "="*60 + "\033[0m\n")
+        print("\033[32m" + header + "\033[0m")
+        print("\033[33m" + "―" * 60 + "\033[0m")
+        print("\033[33m[•] Operation PHANTOM v2.7 | Session: #{}\033[0m".format(self.operation_id))
+        print("\033[33m[•] Encrypted Tunnel: ACTIVE | Stealth Mode: ENGAGED\033[0m")
+        print("\033[33m" + "―" * 60 + "\033[0m\n")
     
-    def typewriter_effect(self, text, delay=0.03):
-        for char in text:
-            sys.stdout.write(char)
+    def ghost_type(self, text, speed=0.025):
+        for ch in text:
+            sys.stdout.write(ch)
             sys.stdout.flush()
-            time.sleep(delay)
+            time.sleep(speed)
         print()
     
-    def animated_loading(self, duration=3, text="Loading"):
-        chars = ["⣾", "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽"]
-        end_time = time.time() + duration
+    def ghost_loader(self, seconds=2, message="Ghosting"):
+        symbols = ["▁", "▃", "▄", "▅", "▆", "▇", "█", "▇", "▆", "▅", "▄", "▃"]
+        end = time.time() + seconds
         
-        print(f"\033[94m[*] {text}", end="", flush=True)
+        print(f"\033[36m[•] {message}", end="", flush=True)
         
-        while time.time() < end_time:
-            for char in chars:
-                if time.time() > end_time:
+        while time.time() < end:
+            for sym in symbols:
+                if time.time() > end:
                     break
-                sys.stdout.write(f"\r\033[94m[*] {text} {char}")
+                sys.stdout.write(f"\r\033[36m[•] {message} {sym}")
                 sys.stdout.flush()
-                time.sleep(0.1)
-        print("\r\033[94m[*] " + text + " [DONE]\033[0m")
+                time.sleep(0.08)
+        print(f"\r\033[36m[•] {message} \033[32m[READY]\033[0m")
     
-    def get_target(self):
-        print("\n" + "="*60)
-        self.typewriter_effect("\033[96m[?] Enter target GMail address:\033[0m", 0.02)
+    def acquire_target(self):
+        print("\n" + "―" * 60)
+        self.ghost_type("\033[35m[?] Insert target Gmail identity:\033[0m", 0.015)
         
         while True:
-            email = input("\033[96m[>] \033[0m").strip()
-            if '@gmail.com' in email.lower():
-                self.target_email = email
+            identity = input("\033[35m[→] \033[0m").strip()
+            if '@gmail.com' in identity.lower():
+                self.target_email = identity
                 break
             else:
-                self.typewriter_effect("\033[91m[!] Invalid GMail format. Use: user@gmail.com\033[0m", 0.01)
+                self.ghost_type("\033[31m[!] Invalid Gmail signature. Required format: user@gmail.com\033[0m", 0.01)
         
         print()
-        self.animated_loading(2, f"Scanning {email}")
+        self.ghost_loader(1, f"Ghost scanning {identity}")
         
-        self.typewriter_effect(f"\033[92m[+] Target acquired: {email}\033[0m", 0.02)
-        self.typewriter_effect("\033[92m[+] Google API endpoint detected\033[0m", 0.02)
-        self.typewriter_effect("\033[92m[+] Authentication service mapped\033[0m", 0.02)
+        self.ghost_type(f"\033[32m[+] Target locked: {identity}\033[0m", 0.015)
+        self.ghost_type("\033[32m[+] Google authentication vector identified\033[0m", 0.015)
+        self.ghost_type("\033[32m[+] Security layers mapped for penetration\033[0m", 0.015)
         
-        return email
+        return identity
     
-    def generate_fake_ip(self):
-        return f"{random.randint(100, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}"
+    def phantom_ip(self):
+        return f"192.168.{random.randint(1, 254)}.{random.randint(1, 254)}"
     
-    def simulate_brute_force(self):
-        print("\n" + "="*60)
-        self.typewriter_effect("\033[95m[+] INITIATING BRUTE FORCE SEQUENCE\033[0m", 0.02)
-        print("\033[95m" + "="*60 + "\033[0m\n")
+    def breach_protocol(self):
+        print("\n" + "―" * 60)
+        self.ghost_type("\033[31m[+] INITIATING CREDENTIAL HARVEST PROTOCOL\033[0m", 0.015)
+        print("\033[31m" + "―" * 60 + "\033[0m\n")
         
-        proxy_ip = self.generate_fake_ip()
-        start_time = datetime.now().strftime("%H:%M:%S")
+        ghost_ip = self.phantom_ip()
+        breach_start = datetime.now().strftime("%H:%M:%S")
         
-        self.typewriter_effect(f"\033[96m[*] Start time: {start_time}\033[0m", 0.01)
-        self.typewriter_effect(f"\033[96m[*] Proxy chain: {proxy_ip}:443 -> TOR Node -> {self.generate_fake_ip()}:8080\033[0m", 0.01)
-        self.typewriter_effect("\033[96m[*] Bypassing Google security protocols...\033[0m", 0.01)
-        self.typewriter_effect("\033[96m[*] Rate limit: 5 requests/sec (max safe threshold)\033[0m", 0.01)
-        self.typewriter_effect("\033[96m[*] Using hybrid dictionary+mask attack\033[0m", 0.01)
+        self.ghost_type(f"\033[36m[•] Breach timestamp: {breach_start}\033[0m", 0.01)
+        self.ghost_type(f"\033[36m[•] Ghost network: {ghost_ip} → VPN → {self.phantom_ip()}\033[0m", 0.01)
+        self.ghost_type("\033[36m[•] Evading Google security protocols...\033[0m", 0.01)
+        self.ghost_type("\033[36m[•] Attack pattern: Rainbow + Dictionary hybrid\033[0m", 0.01)
+        self.ghost_type("\033[36m[•] Injection rate: 3-7 attempts/second\033[0m", 0.01)
         
-        time.sleep(2)
+        time.sleep(1)
         print()
         
-        common_passwords = [
-            "123456", "password", "123456789", "12345678",
-            "12345", "1234567", "senha", "password123",
-            "admin", "123123", "qwerty", "abc123",
-            "111111", "1234", "iloveyou", "000000",
-            "senha123", "batman", "superman", "teste123",
-            "password1", "1234567890", "sunshine", "princess",
-            "football", "monkey", "charlie", "donald",
-            "harley", "hunter", "mustang", "soccer"
+        pass_combinations = [
+            "admin123", "qwerty123", "welcome1", "masterkey",
+            "shadow123", "phantom1", "ghost123", "hunter2",
+            "dragon123", "python3", "kali2023", "ubuntu1",
+            "windows10", "macbook1", "android1", "iphone13",
+            "matrix123", "cyberpunk", "hackerman", "rootaccess",
+            "letmein123", "changeme1", "default1", "password1",
+            "12345678", "11111111", "00000000", "abcdefg"
         ]
         
-        total_duration = 60
-        attempts_per_second = random.randint(2, 5)
-        total_attempts_possible = total_duration * attempts_per_second
+        operation_time = 60
+        injection_rate = random.randint(3, 7)
+        max_injections = operation_time * injection_rate
         
-        insert_pos = random.randint(len(common_passwords) // 2, len(common_passwords) + 20)
-        common_passwords.insert(insert_pos, self.password_found)
+        injection_point = random.randint(len(pass_combinations) // 2, len(pass_combinations) + 15)
+        pass_combinations.insert(injection_point, self.cracked_pass)
         
-        start_time_attack = time.time()
+        breach_begin = time.time()
         
-        print("\033[93m[+] Testing credential combinations:\033[0m\n")
+        print("\033[33m[+] Injecting credential combinations:\033[0m\n")
         
-        attempt_count = 0
-        success_line = random.randint(int(total_attempts_possible * 0.7), int(total_attempts_possible * 0.95))
+        injection_count = 0
+        success_moment = random.randint(int(max_injections * 0.6), int(max_injections * 0.9))
         
-        while time.time() - start_time_attack < total_duration:
-            attempt_count += 1
+        while time.time() - breach_begin < operation_time:
+            injection_count += 1
             
-            if attempt_count < len(common_passwords) * 3:
-                password_try = common_passwords[attempt_count % len(common_passwords)]
+            if injection_count < len(pass_combinations) * 3:
+                current_try = pass_combinations[injection_count % len(pass_combinations)]
             else:
-                chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
-                password_try = ''.join(random.choice(chars) for _ in range(random.randint(6, 12)))
+                characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*"
+                current_try = ''.join(random.choice(characters) for _ in range(random.randint(8, 14)))
             
-            delay = random.uniform(0.05, 0.15)
+            delay = random.uniform(0.04, 0.12)
             time.sleep(delay)
             
-            ip = self.generate_fake_ip()
-            timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
+            ghost_node = self.phantom_ip()
+            current_time = datetime.now().strftime("%H:%M:%S.%f")[:-4]
             
-            if attempt_count == success_line:
-                status = "\033[92m[ACCESS GRANTED]\033[0m"
-                print(f"[{timestamp}] [TOR:{ip}] {self.target_email}:{self.password_found} {status}")
-                self.total_attempts = attempt_count
+            if injection_count == success_moment:
+                status = "\033[32m[CREDENTIALS VALID]\033[0m"
+                print(f"[{current_time}] [GHOST:{ghost_node}] {self.target_email}:{self.cracked_pass} {status}")
+                self.attempt_count = injection_count
                 
-                print(f"\n\033[92m[+] Valid credentials found at {timestamp}\033[0m")
-                print(f"\033[92m[+] Authentication token generated\033[0m")
-                print(f"\033[92m[+] Session established with target\033[0m")
-                time.sleep(2)
+                print(f"\n\033[32m[+] Authentication breach successful at {current_time}\033[0m")
+                print(f"\033[32m[+] Security token compromised\033[0m")
+                print(f"\033[32m[+] Establishing persistent connection...\033[0m")
+                time.sleep(1.5)
                 break
             else:
-                status = "\033[91m[ACCESS DENIED]\033[0m"
-                if attempt_count % random.randint(3, 7) == 0:
-                    print(f"[{timestamp}] [TOR:{ip}] {self.target_email}:{password_try} {status}")
+                status = "\033[31m[INVALID CREDENTIALS]\033[0m"
+                if injection_count % random.randint(2, 5) == 0:
+                    print(f"[{current_time}] [GHOST:{ghost_node}] {self.target_email}:{current_try} {status}")
         
-        if attempt_count < success_line:
-            timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
-            ip = self.generate_fake_ip()
-            status = "\033[92m[ACCESS GRANTED]\033[0m"
-            print(f"[{timestamp}] [TOR:{ip}] {self.target_email}:{self.password_found} {status}")
-            self.total_attempts = attempt_count
+        if injection_count < success_moment:
+            current_time = datetime.now().strftime("%H:%M:%S.%f")[:-4]
+            ghost_node = self.phantom_ip()
+            status = "\033[32m[CREDENTIALS VALID]\033[0m"
+            print(f"[{current_time}] [GHOST:{ghost_node}] {self.target_email}:{self.cracked_pass} {status}")
+            self.attempt_count = injection_count
         
-        return attempt_count
+        return injection_count
     
-    def show_results(self, attempts):
-        print("\n" + "="*60)
-        self.typewriter_effect("\033[92m[+] OPERATION COMPLETED SUCCESSFULLY\033[0m", 0.02)
-        print("\033[92m" + "="*60 + "\033[0m\n")
+    def show_harvest(self, injections):
+        print("\n" + "―" * 60)
+        self.ghost_type("\033[32m[+] OPERATION PHANTOM: COMPROMISE SUCCESSFUL\033[0m", 0.015)
+        print("\033[32m" + "―" * 60 + "\033[0m\n")
         
-        end_time = datetime.now().strftime("%H:%M:%S")
+        breach_end = datetime.now().strftime("%H:%M:%S")
         
-        print(f"\033[96m[*] Compromised account: {self.target_email}\033[0m")
-        print(f"\033[96m[*] Credentials: \033[92m{self.target_email}:{self.password_found}\033[0m")
-        print(f"\033[96m[*] Total attempts: {attempts}\033[0m")
-        print(f"\033[96m[*] Time elapsed: 60 seconds\033[0m")
-        print(f"\033[96m[*] Breach time: {end_time}\033[0m")
-        print(f"\033[96m[*] Session ID: {self.session_id}\033[0m")
+        print(f"\033[36m[•] Compromised identity: {self.target_email}\033[0m")
+        print(f"\033[36m[•] Harvested credentials: \033[32m{self.target_email}:{self.cracked_pass}\033[0m")
+        print(f"\033[36m[•] Total injections: {injections}\033[0m")
+        print(f"\033[36m[•] Breach duration: 60 seconds\033[0m")
+        print(f"\033[36m[•] Compromise time: {breach_end}\033[0m")
+        print(f"\033[36m[•] Operation ID: PHANTOM-{self.operation_id}\033[0m")
         
-        print("\n\033[93m[*] Extracting account data:\033[0m")
-        time.sleep(1)
+        print("\n\033[33m[+] Extracting digital footprint:\033[0m")
+        time.sleep(0.8)
         
-        fake_data = [
-            ("Last login", "2 hours ago"),
-            ("Location", f"São Paulo, BR ({self.generate_fake_ip()})"),
-            ("2FA enabled", "No"),
-            ("Recovery email", "backup@email.com"),
-            ("Account created", "March 15, 2018"),
-            ("Storage used", "2.4/15 GB"),
-            ("Connected devices", "3 devices"),
-            ("Recent activity", "Email opened 5 minutes ago")
+        digital_data = [
+            ("Last authentication", "Today 14:32"),
+            ("Geolocation", f"Brazil, SP ({self.phantom_ip()})"),
+            ("Two-factor status", "Disabled"),
+            ("Account age", "3 years, 7 months"),
+            ("Storage allocation", "3.2/15 GB"),
+            ("Linked devices", "Smartphone, Tablet, Laptop"),
+            ("Recent activity", "Email received 8 minutes ago"),
+            ("Security score", "48/100 (Vulnerable)")
         ]
         
-        for item, value in fake_data:
-            print(f"    \033[94m[>] {item}: {value}\033[0m")
-            time.sleep(0.2)
+        for item, value in digital_data:
+            print(f"    \033[34m[›] {item}: {value}\033[0m")
+            time.sleep(0.15)
         
-        print("\n\033[93m[*] Available actions:\033[0m")
-        print("    \033[94m[1] Export emails\033[0m")
-        print("    \033[94m[2] Download attachments\033[0m")
-        print("    \033[94m[3] Access Google Drive\033[0m")
-        print("    \033[94m[4] Maintain persistence\033[0m")
-        print("    \033[94m[5] Clear logs and exit\033[0m")
+        print("\n\033[33m[+] Post-breach options:\033[0m")
+        print("    \033[34m[1] Clone mailbox data\033[0m")
+        print("    \033[34m[2] Extract contact network\033[0m")
+        print("    \033[34m[3] Access Google services\033[0m")
+        print("    \033[34m[4] Plant ghost persistence\033[0m")
+        print("    \033[34m[5] Erase traces and vanish\033[0m")
         
-        print("\n\033[95m" + "="*60 + "\033[0m")
-        self.typewriter_effect("\033[95m[+] Session maintained. Connection stable.\033[0m", 0.03)
-        time.sleep(2)
+        print("\n\033[31m" + "―" * 60 + "\033[0m")
+        self.ghost_type("\033[31m[+] Ghost connection: STABLE | Encryption: ACTIVE\033[0m", 0.02)
+        time.sleep(1.5)
         
-        print("\n\033[96m[?] Select action (1-5, default=5): \033[0m", end="")
-        choice = input()
+        print("\n\033[35m[?] Select post-operation vector (1-5, default=5): \033[0m", end="")
+        vector = input().strip()
         
-        if choice == "1":
-            print("\033[92m[+] Starting email export...\033[0m")
+        if vector == "1":
+            print("\033[32m[+] Cloning mailbox contents...\033[0m")
+            time.sleep(1.8)
+            print("\033[32m[+] 2,148 messages cloned to ghost storage\033[0m")
+        elif vector == "2":
+            print("\033[32m[+] Extracting contact network...\033[0m")
+            time.sleep(1.8)
+            print("\033[32m[+] 312 contacts mapped and archived\033[0m")
+        elif vector == "3":
+            print("\033[32m[+] Accessing Google ecosystem...\033[0m")
+            time.sleep(1.8)
+            print("\033[32m[+] Drive, Photos, and Calendar accessible\033[0m")
+        elif vector == "4":
+            print("\033[32m[+] Planting ghost persistence module...\033[0m")
             time.sleep(2)
-            print("\033[92m[+] 1,247 emails exported to /tmp/gmail_dump_{}.zip\033[0m".format(self.session_id))
-        elif choice == "2":
-            print("\033[92m[+] Downloading attachments...\033[0m")
-            time.sleep(2)
-            print("\033[92m[+] 43 files downloaded (total: 156MB)\033[0m")
-        elif choice == "3":
-            print("\033[92m[+] Accessing Google Drive...\033[0m")
-            time.sleep(2)
-            print("\033[92m[+] 87 files accessible in Drive\033[0m")
-        elif choice == "4":
-            print("\033[92m[+] Installing persistence module...\033[0m")
-            time.sleep(2)
-            print("\033[92m[+] Backdoor active. Session will remain open.\033[0m")
+            print("\033[32m[+] Backdoor active. Silent access maintained.\033[0m")
         
-        print("\n\033[91m[!] Cleaning trace logs...\033[0m")
+        print("\n\033[31m[!] Initiating ghost protocol cleanup...\033[0m")
         time.sleep(1)
-        print("\033[92m[+] Proxy logs erased\033[0m")
-        print("\033[92m[+] Connection history cleared\033[0m")
-        print("\033[92m[+] Session {} terminated\033[0m".format(self.session_id))
+        print("\033[32m[+] Operation logs purged\033[0m")
+        print("\033[32m[+] Network traces erased\033[0m")
+        print("\033[32m[+] Session PHANTOM-{} terminated\033[0m".format(self.operation_id))
     
-    def run(self):
-        self.clear_screen()
-        self.print_banner()
+    def execute(self):
+        self.wipe_screen()
+        self.display_header()
         
         try:
-            self.get_target()
-            time.sleep(1)
+            self.acquire_target()
+            time.sleep(0.8)
             
-            attempts = self.simulate_brute_force()
+            injections = self.breach_protocol()
             
-            self.show_results(attempts)
+            self.show_harvest(injections)
             
         except KeyboardInterrupt:
-            print("\n\n\033[91m[!] Emergency shutdown initiated\033[0m")
-            time.sleep(1)
-            print("\033[92m[+] All connections terminated\033[0m")
-            print("\033[92m[+] Evidence purged\033[0m")
+            print("\n\n\033[31m[!] Emergency ghost protocol activated\033[0m")
+            time.sleep(0.8)
+            print("\033[32m[+] All connections severed\033[0m")
+            print("\033[32m[+] Digital footprint eliminated\033[0m")
             sys.exit(0)
 
 def main():
-    tool = GmailAccessTool()
+    phantom = ShadowBreach()
     
-    print("\n\033[96m[?] Initialize access protocol? (y/n): \033[0m", end="")
-    choice = input().lower()
+    print("\n\033[35m[?] Engage phantom protocol? (y/N): \033[0m", end="")
+    engage = input().lower()
     
-    if choice == 'y' or choice == '':
-        tool.run()
+    if engage == 'y':
+        phantom.execute()
     else:
-        print("\n\033[93m[*] System offline\033[0m")
+        print("\n\033[33m[•] Phantom protocol deactivated\033[0m")
 
 if __name__ == "__main__":
     if os.name == 'nt':
-        os.system("title GMail Access Terminal")
-        os.system("mode con: cols=80 lines=40")
+        os.system("title Phantom Breach Protocol")
+        os.system("mode con: cols=80 lines=45")
     
     main()
