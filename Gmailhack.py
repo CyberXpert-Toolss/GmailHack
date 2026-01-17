@@ -18,19 +18,19 @@ class ShadowBreach:
         os.system('clear' if os.name != 'nt' else 'cls')
     
     def display_header(self):
-        header = """
+        header = r"""
     ____                 _ _ _   _            _    
    / ___|_ __ ___   __ _(_) | | | | __ _  ___| | __
   | |  _| '_ ` _ \ / _` | | | |_| |/ _` |/ __| |/ /
   | |_| | | | | | | (_| | | |  _  | (_| | (__|   < 
-   \____|_| |_| |_|\__,_|_|_|_| |_|\__,_|\___|_|\_\\
+   \____|_| |_| |_|\__,_|_|_|_| |_|\__,_|\___|_|\_\
                                                   
         """
         print("\033[32m" + header + "\033[0m")
-        print("\033[33m" + "―" * 60 + "\033[0m")
+        print("\033[33m" + "-" * 60 + "\033[0m")
         print("\033[33m[•] Operation PHANTOM v2.7 | Session: #{}\033[0m".format(self.operation_id))
         print("\033[33m[•] Encrypted Tunnel: ACTIVE | Stealth Mode: ENGAGED\033[0m")
-        print("\033[33m" + "―" * 60 + "\033[0m\n")
+        print("\033[33m" + "-" * 60 + "\033[0m\n")
     
     def ghost_type(self, text, speed=0.025):
         for ch in text:
@@ -55,7 +55,7 @@ class ShadowBreach:
         print(f"\r\033[36m[•] {message} \033[32m[READY]\033[0m")
     
     def acquire_target(self):
-        print("\n" + "―" * 60)
+        print("\n" + "-" * 60)
         self.ghost_type("\033[35m[?] Insert target Gmail identity:\033[0m", 0.015)
         
         while True:
@@ -79,9 +79,9 @@ class ShadowBreach:
         return f"192.168.{random.randint(1, 254)}.{random.randint(1, 254)}"
     
     def breach_protocol(self):
-        print("\n" + "―" * 60)
+        print("\n" + "-" * 60)
         self.ghost_type("\033[31m[+] INITIATING CREDENTIAL HARVEST PROTOCOL\033[0m", 0.015)
-        print("\033[31m" + "―" * 60 + "\033[0m\n")
+        print("\033[31m" + "-" * 60 + "\033[0m\n")
         
         ghost_ip = self.phantom_ip()
         breach_start = datetime.now().strftime("%H:%M:%S")
@@ -159,9 +159,9 @@ class ShadowBreach:
         return injection_count
     
     def show_harvest(self, injections):
-        print("\n" + "―" * 60)
+        print("\n" + "-" * 60)
         self.ghost_type("\033[32m[+] OPERATION PHANTOM: COMPROMISE SUCCESSFUL\033[0m", 0.015)
-        print("\033[32m" + "―" * 60 + "\033[0m\n")
+        print("\033[32m" + "-" * 60 + "\033[0m\n")
         
         breach_end = datetime.now().strftime("%H:%M:%S")
         
@@ -197,7 +197,7 @@ class ShadowBreach:
         print("    \033[34m[4] Plant ghost persistence\033[0m")
         print("    \033[34m[5] Erase traces and vanish\033[0m")
         
-        print("\n\033[31m" + "―" * 60 + "\033[0m")
+        print("\n\033[31m" + "-" * 60 + "\033[0m")
         self.ghost_type("\033[31m[+] Ghost connection: STABLE | Encryption: ACTIVE\033[0m", 0.02)
         time.sleep(1.5)
         
