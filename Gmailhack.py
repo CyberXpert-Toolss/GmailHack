@@ -3,7 +3,7 @@
 """
 GMAILHACK - Ferramenta de Hacking para Gmail
 Esta ferramenta é PAGA - Valor: R$ 100,00
-Contato para comprar via WhatsApp: +55 21 97592-7909
+Contato para comprar via WhatsApp: +55 15 98153-1725
 """
 
 import os
@@ -11,7 +11,7 @@ import sys
 import time
 
 VALOR_FERRAMENTA = "R$ 100,00"
-CONTATO_WHATSAPP = "+55 21 97592-7909"
+CONTATO_WHATSAPP = "+55 15 98153-1725"
 CODIGO_CORRETO = "GMAIL2024"
 
 def limpar_tela():
